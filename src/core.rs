@@ -330,11 +330,20 @@ bitflags! {
     }
 }
 
-trait DbKindFlags {
-    fn db_flags() -> DbFlags;
+pub enum Dummy<T> { _Dummy }
+
+pub trait DbKindFlags {
+    fn db_flags(Dummy<Self>) -> DbFlags;
 }
 
-/// Database
+trait _RO {
+
+}
+
+trait _RW {
+
+}
+
 #[unstable]
 pub struct Database {
     handle: ffi::MDB_dbi,
@@ -343,10 +352,6 @@ pub struct Database {
 
 #[unstable]
 impl Database {
-    fn new_with_handle(handle: ffi::MDB_dbi, owns: bool) -> Database {
-        Database { handle: handle, owns: owns }
-    }
-
     /// Retrieves a value by key. In case of DbAllowDups it will be the first value
     pub fn get<'a, T: FromMdbValue<'a>>(&self, txn: &'a ReadTransaction<'a>, key: &'a ToMdbValue<'a>) -> MdbResult<T> {
         txn.get_read_transaction().get(self, key)
@@ -360,11 +365,6 @@ impl Database {
     /// Deletes value for key.
     pub fn del<'a>(&self, txn: &'a WriteTransaction<'a>, key: &'a ToMdbValue<'a>) -> MdbResult<()> {
         txn.get_write_transaction().del(self, key)
-    }
-
-    /// Should be used only with DbAllowDups. Deletes corresponding (key, value)
-    pub fn del_item<'a>(&self, txn: &'a WriteTransaction<'a>, key: &'a ToMdbValue<'a>, data: &'a ToMdbValue<'a>) -> MdbResult<()> {
-        txn.get_write_transaction().del_item(self, key, data)
     }
 
     /// Returns a new cursor
@@ -398,11 +398,6 @@ impl Database {
         txn.get_read_transaction().new_cursor(self)
             .and_then(|c| Ok(CursorKeyRangeIter::new(c, start_key, end_key)))
     }
-
-    /// Returns an iterator for all items (i.e. values with same key)
-    pub fn item_iter<'a>(&'a self, txn: &'a ReadTransaction<'a>, key: &'a ToMdbValue<'a>) -> MdbResult<CursorItemIter<'a, Database>> {
-        txn.get_read_transaction().new_item_iter(self, key)
-    }
 }
 
 impl Drop for Database {
@@ -416,14 +411,19 @@ impl Drop for Database {
 }
 
 impl DbKindFlags for Database {
-    fn db_flags() -> DbFlags {
+    fn db_flags(_: Dummy<Database>) -> DbFlags {
         DbFlags::empty()
     }
+
 }
 
 impl DbHandle for Database {
     fn db_handle(&self) -> ffi::MDB_dbi {
         self.handle
+    }
+
+    fn new_with_handle(handle: ffi::MDB_dbi, owns: bool) -> Database {
+        Database { handle: handle, owns: owns }
     }
 }
 
@@ -435,17 +435,13 @@ pub struct DupDb {
 }
 
 impl DbKindFlags for DupDb {
-    fn db_flags() -> DbFlags {
+    fn db_flags(_: Dummy<DupDb>) -> DbFlags {
         DbAllowDups
     }
 }
 
 #[unstable]
 impl DupDb {
-    fn new_with_handle(handle: ffi::MDB_dbi, owns: bool) -> Database {
-        Database { handle: handle, owns: owns }
-    }
-
     /// Retrieves a value by key. In case of DbAllowDups it will be the first value
     pub fn get<'a, T: FromMdbValue<'a>>(&self, txn: &'a ReadTransaction<'a>, key: &'a ToMdbValue<'a>) -> MdbResult<T> {
         txn.get_read_transaction().get(self, key)
@@ -507,6 +503,10 @@ impl DupDb {
 impl DbHandle for DupDb {
     fn db_handle(&self) -> ffi::MDB_dbi {
         self.handle
+    }
+
+    fn new_with_handle(handle: ffi::MDB_dbi, owns: bool) -> DupDb {
+        DupDb { handle: handle, owns: owns }
     }
 }
 
@@ -762,7 +762,11 @@ impl Environment {
         Ok(dbi)
     }
 
-    fn get_db_by_name<'a>(&'a self, db_name: &'a str, flags: DbFlags) -> MdbResult<Database> {
+    fn get_db_by_name<'a, DB: DbHandle + DbKindFlags>(&'a self, db_name: &'a str, flags: DbFlags) -> MdbResult<DB> {
+        let dbi = try!(self.create_db(Some(db_name), flags | DbKindFlags::db_flags(_Dummy::<DB>)));
+        let db = DbHandle::new_with_handle(dbi, true);
+        Ok(db)
+        /*
         let guard = self.db_cache.lock();
         let ref cell = *guard;
         let cache = unsafe { cell.get() };
@@ -779,24 +783,25 @@ impl Environment {
         unsafe { (*cache).insert(db_name.to_string(), db) };
 
         match unsafe { (*cache).find_equiv(&db_name) } {
-            Some(db) => Ok(Database::new_with_handle(db.handle, false)),
+            Some(db) => Ok(DbHandle::new_with_handle(db.handle, false)),
             _ => Err(InvalidPath)
         }
+        */
     }
 
     /// Returns or creates a named database
     ///
     /// Note: set_maxdbis should be called before
-    pub fn get_or_create_db<'a>(&'a self, name: &'a str, flags: DbFlags) -> MdbResult<Database> {
+    pub fn get_or_create_db<'a, DB: DbHandle + DbKindFlags>(&'a self, name: &'a str, flags: DbFlags) -> MdbResult<DB> {
         // FIXME: ffi::MDB_CREATE should be included only in read-write Environment
         self.get_db_by_name(name, flags | DbCreate)
     }
 
     /// Returns default database
-    pub fn get_default_db<'a>(&'a self, flags: DbFlags) -> MdbResult<Database> {
+    pub fn get_default_db<'a, DB: DbHandle + DbKindFlags>(&'a self, flags: DbFlags) -> MdbResult<DB> {
         // FIXME: cache default DB
         let dbi = try!(self.create_db(None, flags));
-        Ok(Database::new_with_handle(dbi, false))
+        Ok(DbHandle::new_with_handle(dbi, false))
     }
 }
 
@@ -817,6 +822,7 @@ enum TransactionState {
 
 pub trait DbHandle {
     fn db_handle(&self) -> ffi::MDB_dbi;
+    fn new_with_handle(handle: ffi::MDB_dbi, owned: bool) -> Self;
 }
 
 #[experimental]
