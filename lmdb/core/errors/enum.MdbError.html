@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `MdbError` enum in crate `lmdb`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, MdbError">
+
+    <title>lmdb::core::errors::MdbError - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <section class="sidebar">
+        
+        <p class='location'><a href='../../index.html'>lmdb</a>::<wbr><a href='../index.html'>core</a>::<wbr><a href='index.html'>errors</a></p><div class='block enum'><h2>Enums</h2><a class='enum current' href='enum.MdbError.html'>MdbError</a></div>
+    </section>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press 'S' to search, '?' for more options..."
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content enum">
+<h1 class='fqn'><span class='in-band'>Enum <a href='../../index.html'>lmdb</a>::<wbr><a href='../index.html'>core</a>::<wbr><a href='index.html'>errors</a>::<wbr><a class='enum' href=''>MdbError</a><wbr><a class='stability Unstable' title=''>Unstable</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="collapse-all" href="#">[-]
+            </a>&nbsp;<a id="expand-all" href="#">[+]</a>
+        </span><a id='src-2958' href='../../../src/lmdb/home/travis/build/vhbit/lmdb-rs/src/core.rs.html#116-127'>[src]</a></span></h1>
+<pre class='rust enum'>pub enum MdbError {
+    NotFound,
+    KeyExists,
+    TxnFull,
+    CursorFull,
+    PageFull,
+    Corrupted,
+    Panic,
+    InvalidPath,
+    StateError(<a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>),
+    Custom(<a class='type' href='http://doc.rust-lang.org/nightly/libc/types/os/arch/c95/type.c_int.html' title='libc::types::os::arch::c95::c_int'>c_int</a>, <a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>),
+}</pre><h2 class='variants'>Variants</h2>
+<table><tr><td id='variant.NotFound'><a class='stability Unstable' title='Unstable'></a><code>NotFound</code></td><td></td></tr><tr><td id='variant.KeyExists'><a class='stability Unstable' title='Unstable'></a><code>KeyExists</code></td><td></td></tr><tr><td id='variant.TxnFull'><a class='stability Unstable' title='Unstable'></a><code>TxnFull</code></td><td></td></tr><tr><td id='variant.CursorFull'><a class='stability Unstable' title='Unstable'></a><code>CursorFull</code></td><td></td></tr><tr><td id='variant.PageFull'><a class='stability Unstable' title='Unstable'></a><code>PageFull</code></td><td></td></tr><tr><td id='variant.Corrupted'><a class='stability Unstable' title='Unstable'></a><code>Corrupted</code></td><td></td></tr><tr><td id='variant.Panic'><a class='stability Unstable' title='Unstable'></a><code>Panic</code></td><td></td></tr><tr><td id='variant.InvalidPath'><a class='stability Unstable' title='Unstable'></a><code>InvalidPath</code></td><td></td></tr><tr><td id='variant.StateError'><a class='stability Unstable' title='Unstable'></a><code>StateError</code></td><td></td></tr><tr><td id='variant.Custom'><a class='stability Unstable' title='Unstable'></a><code>Custom</code></td><td></td></tr></table><h2 id='methods'>Methods</h2><h3 class='impl'><a class='stability Unstable' title='Unstable'></a><code>impl <a class='enum' href='../../../lmdb/core/errors/enum.MdbError.html' title='lmdb::core::errors::MdbError'>MdbError</a></code></h3><div class='impl-methods'><h4 id='method.new_with_code' class='method'><a class='stability Unstable' title='Unstable'></a><code>fn <a href='#method.new_with_code' class='fnname'>new_with_code</a>(code: <a class='type' href='http://doc.rust-lang.org/nightly/libc/types/os/arch/c95/type.c_int.html' title='libc::types::os::arch::c95::c_int'>c_int</a>) -&gt; <a class='enum' href='../../../lmdb/core/errors/enum.MdbError.html' title='lmdb::core::errors::MdbError'>MdbError</a></code></h4>
+</div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/fmt/trait.Show.html' title='core::fmt::Show'>Show</a> for <a class='enum' href='../../../lmdb/core/errors/enum.MdbError.html' title='lmdb::core::errors::MdbError'>MdbError</a></code></h3><div class='impl-methods'><h4 id='method.fmt' class='method'><a class='stability Experimental' title='Experimental'></a><code>fn <a href='#method.fmt' class='fnname'>fmt</a>(&amp;self, fmt: &amp;mut <a class='struct' href='http://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='http://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></h4>
+</div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <div id="help" class="hidden">
+        <div class="shortcuts">
+            <h1>Keyboard shortcuts</h1>
+            <dl>
+                <dt>?</dt>
+                <dd>Show this help dialog</dd>
+                <dt>S</dt>
+                <dd>Focus the search field</dd>
+                <dt>&larrb;</dt>
+                <dd>Move up in search results</dd>
+                <dt>&rarrb;</dt>
+                <dd>Move down in search results</dd>
+                <dt>&#9166;</dt>
+                <dd>Go to active search result</dd>
+            </dl>
+        </div>
+        <div class="infos">
+            <h1>Search tricks</h1>
+            <p>
+                Prefix searches with a type followed by a colon (e.g.
+                <code>fn:</code>) to restrict the search to a given type.
+            </p>
+            <p>
+                Accepted types are: <code>fn</code>, <code>mod</code>,
+                <code>struct</code>, <code>enum</code>,
+                <code>trait</code>, <code>typedef</code> (or
+                <code>tdef</code>).
+            </p>
+        </div>
+    </div>
+
+    
+
+    <script>
+        window.rootPath = "../../../";
+        window.currentCrate = "lmdb";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../../jquery.js"></script>
+    <script src="../../../main.js"></script>
+    
+    <script async src="../../../search-index.js"></script>
+</body>
+</html>

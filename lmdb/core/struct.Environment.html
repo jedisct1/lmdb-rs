@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `Environment` struct in crate `lmdb`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, Environment">
+
+    <title>lmdb::core::Environment - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <section class="sidebar">
+        
+        <p class='location'><a href='../index.html'>lmdb</a>::<wbr><a href='index.html'>core</a></p><div class='block mod'><h2>Modules</h2><a class='mod ' href='errors/index.html'>errors</a></div><div class='block struct'><h2>Structs</h2><a class='struct ' href='struct.Cursor.html'>Cursor</a><a class='struct ' href='struct.CursorItemIter.html'>CursorItemIter</a><a class='struct ' href='struct.CursorIter.html'>CursorIter</a><a class='struct ' href='struct.CursorIterator.html'>CursorIterator</a><a class='struct ' href='struct.CursorKeyRangeIter.html'>CursorKeyRangeIter</a><a class='struct ' href='struct.CursorValue.html'>CursorValue</a><a class='struct ' href='struct.Database.html'>Database</a><a class='struct ' href='struct.DbFlags.html'>DbFlags</a><a class='struct ' href='struct.EnvBuilder.html'>EnvBuilder</a><a class='struct ' href='struct.EnvCreateFlags.html'>EnvCreateFlags</a><a class='struct ' href='struct.EnvFlags.html'>EnvFlags</a><a class='struct current' href='struct.Environment.html'>Environment</a><a class='struct ' href='struct.MdbValue.html'>MdbValue</a><a class='struct ' href='struct.NativeTransaction.html'>NativeTransaction</a><a class='struct ' href='struct.ReadonlyTransaction.html'>ReadonlyTransaction</a><a class='struct ' href='struct.Transaction.html'>Transaction</a></div><div class='block trait'><h2>Traits</h2><a class='trait ' href='trait.CursorIteratorInner.html'>CursorIteratorInner</a><a class='trait ' href='trait.ReadTransaction.html'>ReadTransaction</a><a class='trait ' href='trait.WriteTransaction.html'>WriteTransaction</a></div>
+    </section>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press 'S' to search, '?' for more options..."
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../index.html'>lmdb</a>::<wbr><a href='index.html'>core</a>::<wbr><a class='struct' href=''>Environment</a><wbr><a class='stability Unstable' title=''>Unstable</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="collapse-all" href="#">[-]
+            </a>&nbsp;<a id="expand-all" href="#">[+]</a>
+        </span><a id='src-6759' href='../../src/lmdb/home/travis/build/vhbit/lmdb-rs/src/core.rs.html#536-539'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct Environment {
+    // some fields omitted
+}</pre><div class='docblock'><p>Represents LMDB Environment. Should be opened using <code>EnvBuilder</code></p>
+</div><h2 id='methods'>Methods</h2><h3 class='impl'><a class='stability Unstable' title='Unstable'></a><code>impl <a class='struct' href='../../lmdb/core/struct.Environment.html' title='lmdb::core::Environment'>Environment</a></code></h3><div class='impl-methods'><h4 id='method.new' class='method'><a class='stability Unstable' title='Unstable'></a><code>fn <a href='#method.new' class='fnname'>new</a>() -&gt; <a class='struct' href='../../lmdb/core/struct.EnvBuilder.html' title='lmdb::core::EnvBuilder'>EnvBuilder</a></code></h4>
+<h4 id='method.stat' class='method'><a class='stability Unstable' title='Unstable'></a><code>fn <a href='#method.stat' class='fnname'>stat</a>(&amp;self) -&gt; <a class='type' href='../../lmdb/core/type.MdbResult.html' title='lmdb::core::MdbResult'>MdbResult</a>&lt;<a class='struct' href='../../lmdb/struct.MDB_stat.html' title='lmdb::MDB_stat'>MDB_stat</a>&gt;</code></h4>
+<h4 id='method.info' class='method'><a class='stability Unstable' title='Unstable'></a><code>fn <a href='#method.info' class='fnname'>info</a>(&amp;self) -&gt; <a class='type' href='../../lmdb/core/type.MdbResult.html' title='lmdb::core::MdbResult'>MdbResult</a>&lt;<a class='struct' href='../../lmdb/struct.MDB_envinfo.html' title='lmdb::MDB_envinfo'>MDB_envinfo</a>&gt;</code></h4>
+<h4 id='method.sync' class='method'><a class='stability Unstable' title='Unstable'></a><code>fn <a href='#method.sync' class='fnname'>sync</a>(&amp;mut self, force: <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a>) -&gt; <a class='type' href='../../lmdb/core/type.MdbResult.html' title='lmdb::core::MdbResult'>MdbResult</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.unit.html'>()</a>&gt;</code></h4>
+<div class='docblock'><p>Sync environment to disk</p>
+</div><h4 id='method.set_flags' class='method'><a class='stability Unstable' title='Unstable'></a><code>fn <a href='#method.set_flags' class='fnname'>set_flags</a>(&amp;mut self, flags: <a class='struct' href='../../lmdb/core/struct.EnvFlags.html' title='lmdb::core::EnvFlags'>EnvFlags</a>, turn_on: <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a>) -&gt; <a class='type' href='../../lmdb/core/type.MdbResult.html' title='lmdb::core::MdbResult'>MdbResult</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.unit.html'>()</a>&gt;</code></h4>
+<div class='docblock'><p>This one sets only flags which are available for change even
+after opening, see also <a href="#method.get_flags">get_flags</a> and <a href="#method.get_all_flags">get_all_flags</a></p>
+</div><h4 id='method.get_flags' class='method'><a class='stability Unstable' title='Unstable'></a><code>fn <a href='#method.get_flags' class='fnname'>get_flags</a>(&amp;self) -&gt; <a class='type' href='../../lmdb/core/type.MdbResult.html' title='lmdb::core::MdbResult'>MdbResult</a>&lt;<a class='struct' href='../../lmdb/core/struct.EnvFlags.html' title='lmdb::core::EnvFlags'>EnvFlags</a>&gt;</code></h4>
+<div class='docblock'><p>Get flags of environment, which could be changed after it was opened
+use <a href="#method.get_all_flags">get_all_flags</a> if you need also creation time flags</p>
+</div><h4 id='method.get_all_flags' class='method'><a class='stability Unstable' title='Unstable'></a><code>fn <a href='#method.get_all_flags' class='fnname'>get_all_flags</a>(&amp;self) -&gt; <a class='type' href='../../lmdb/core/type.MdbResult.html' title='lmdb::core::MdbResult'>MdbResult</a>&lt;<a class='struct' href='../../lmdb/core/struct.EnvCreateFlags.html' title='lmdb::core::EnvCreateFlags'>EnvCreateFlags</a>&gt;</code></h4>
+<div class='docblock'><p>Get all flags of environment, including which were specified on creation
+See also <a href="#method.get_flags">get_flags</a> if you&#39;re interested only in modifiable flags</p>
+</div><h4 id='method.get_maxreaders' class='method'><a class='stability Unstable' title='Unstable'></a><code>fn <a href='#method.get_maxreaders' class='fnname'>get_maxreaders</a>(&amp;self) -&gt; <a class='type' href='../../lmdb/core/type.MdbResult.html' title='lmdb::core::MdbResult'>MdbResult</a>&lt;<a class='type' href='http://doc.rust-lang.org/nightly/libc/types/os/arch/c95/type.c_uint.html' title='libc::types::os::arch::c95::c_uint'>c_uint</a>&gt;</code></h4>
+<h4 id='method.get_maxkeysize' class='method'><a class='stability Unstable' title='Unstable'></a><code>fn <a href='#method.get_maxkeysize' class='fnname'>get_maxkeysize</a>(&amp;self) -&gt; <a class='type' href='http://doc.rust-lang.org/nightly/libc/types/os/arch/c95/type.c_int.html' title='libc::types::os::arch::c95::c_int'>c_int</a></code></h4>
+<h4 id='method.copy_to_fd' class='method'><a class='stability Unstable' title='Unstable'></a><code>fn <a href='#method.copy_to_fd' class='fnname'>copy_to_fd</a>(&amp;self, fd: <a class='type' href='../../lmdb/type.mdb_filehandle_t.html' title='lmdb::mdb_filehandle_t'>mdb_filehandle_t</a>) -&gt; <a class='type' href='../../lmdb/core/type.MdbResult.html' title='lmdb::core::MdbResult'>MdbResult</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.unit.html'>()</a>&gt;</code></h4>
+<div class='docblock'><p>Creates a backup copy in specified file descriptor</p>
+</div><h4 id='method.get_fd' class='method'><a class='stability Unstable' title='Unstable'></a><code>fn <a href='#method.get_fd' class='fnname'>get_fd</a>(&amp;self) -&gt; <a class='type' href='../../lmdb/core/type.MdbResult.html' title='lmdb::core::MdbResult'>MdbResult</a>&lt;<a class='type' href='../../lmdb/type.mdb_filehandle_t.html' title='lmdb::mdb_filehandle_t'>mdb_filehandle_t</a>&gt;</code></h4>
+<div class='docblock'><p>Gets file descriptor of this environment</p>
+</div><h4 id='method.copy_to_path' class='method'><a class='stability Unstable' title='Unstable'></a><code>fn <a href='#method.copy_to_path' class='fnname'>copy_to_path</a>(&amp;self, path: &amp;<a class='struct' href='http://doc.rust-lang.org/nightly/std/path/posix/struct.Path.html' title='std::path::posix::Path'>Path</a>) -&gt; <a class='type' href='../../lmdb/core/type.MdbResult.html' title='lmdb::core::MdbResult'>MdbResult</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.unit.html'>()</a>&gt;</code></h4>
+<div class='docblock'><p>Creates a backup copy in specified path</p>
+</div><h4 id='method.new_transaction' class='method'><a class='stability Unstable' title='Unstable'></a><code>fn <a href='#method.new_transaction' class='fnname'>new_transaction</a>(&amp;self) -&gt; <a class='type' href='../../lmdb/core/type.MdbResult.html' title='lmdb::core::MdbResult'>MdbResult</a>&lt;<a class='struct' href='../../lmdb/core/struct.Transaction.html' title='lmdb::core::Transaction'>Transaction</a>&gt;</code></h4>
+<div class='docblock'><p>Creates a new read-write transaction</p>
+
+<p>Use <code>get_reader</code> to get much faster lock-free alternative</p>
+</div><h4 id='method.get_reader' class='method'><a class='stability Unstable' title='Unstable'></a><code>fn <a href='#method.get_reader' class='fnname'>get_reader</a>(&amp;self) -&gt; <a class='type' href='../../lmdb/core/type.MdbResult.html' title='lmdb::core::MdbResult'>MdbResult</a>&lt;<a class='struct' href='../../lmdb/core/struct.ReadonlyTransaction.html' title='lmdb::core::ReadonlyTransaction'>ReadonlyTransaction</a>&gt;</code></h4>
+<div class='docblock'><p>Creates a readonly transaction</p>
+</div><h4 id='method.get_or_create_db' class='method'><a class='stability Unstable' title='Unstable'></a><code>fn <a href='#method.get_or_create_db' class='fnname'>get_or_create_db</a>&lt;'a&gt;(&amp;'a self, name: &amp;'a <a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, flags: <a class='struct' href='../../lmdb/core/struct.DbFlags.html' title='lmdb::core::DbFlags'>DbFlags</a>) -&gt; <a class='type' href='../../lmdb/core/type.MdbResult.html' title='lmdb::core::MdbResult'>MdbResult</a>&lt;<a class='struct' href='../../lmdb/core/struct.Database.html' title='lmdb::core::Database'>Database</a>&gt;</code></h4>
+<div class='docblock'><p>Returns or creates a named database</p>
+
+<p>Note: set_maxdbis should be called before</p>
+</div><h4 id='method.get_default_db' class='method'><a class='stability Unstable' title='Unstable'></a><code>fn <a href='#method.get_default_db' class='fnname'>get_default_db</a>&lt;'a&gt;(&amp;'a self, flags: <a class='struct' href='../../lmdb/core/struct.DbFlags.html' title='lmdb::core::DbFlags'>DbFlags</a>) -&gt; <a class='type' href='../../lmdb/core/type.MdbResult.html' title='lmdb::core::MdbResult'>MdbResult</a>&lt;<a class='struct' href='../../lmdb/core/struct.Database.html' title='lmdb::core::Database'>Database</a>&gt;</code></h4>
+<div class='docblock'><p>Returns default database</p>
+</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.Drop.html' title='core::ops::Drop'>Drop</a> for <a class='struct' href='../../lmdb/core/struct.Environment.html' title='lmdb::core::Environment'>Environment</a></code></h3><div class='impl-methods'><h4 id='method.drop' class='method'><a class='stability Experimental' title='Experimental'></a><code>fn <a href='#method.drop' class='fnname'>drop</a>(&amp;mut self)</code></h4>
+</div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <div id="help" class="hidden">
+        <div class="shortcuts">
+            <h1>Keyboard shortcuts</h1>
+            <dl>
+                <dt>?</dt>
+                <dd>Show this help dialog</dd>
+                <dt>S</dt>
+                <dd>Focus the search field</dd>
+                <dt>&larrb;</dt>
+                <dd>Move up in search results</dd>
+                <dt>&rarrb;</dt>
+                <dd>Move down in search results</dd>
+                <dt>&#9166;</dt>
+                <dd>Go to active search result</dd>
+            </dl>
+        </div>
+        <div class="infos">
+            <h1>Search tricks</h1>
+            <p>
+                Prefix searches with a type followed by a colon (e.g.
+                <code>fn:</code>) to restrict the search to a given type.
+            </p>
+            <p>
+                Accepted types are: <code>fn</code>, <code>mod</code>,
+                <code>struct</code>, <code>enum</code>,
+                <code>trait</code>, <code>typedef</code> (or
+                <code>tdef</code>).
+            </p>
+        </div>
+    </div>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "lmdb";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    
+    <script async src="../../search-index.js"></script>
+</body>
+</html>

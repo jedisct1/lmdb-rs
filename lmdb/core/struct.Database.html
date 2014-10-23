@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `Database` struct in crate `lmdb`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, Database">
+
+    <title>lmdb::core::Database - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <section class="sidebar">
+        
+        <p class='location'><a href='../index.html'>lmdb</a>::<wbr><a href='index.html'>core</a></p><div class='block mod'><h2>Modules</h2><a class='mod ' href='errors/index.html'>errors</a></div><div class='block struct'><h2>Structs</h2><a class='struct ' href='struct.Cursor.html'>Cursor</a><a class='struct ' href='struct.CursorItemIter.html'>CursorItemIter</a><a class='struct ' href='struct.CursorIter.html'>CursorIter</a><a class='struct ' href='struct.CursorIterator.html'>CursorIterator</a><a class='struct ' href='struct.CursorKeyRangeIter.html'>CursorKeyRangeIter</a><a class='struct ' href='struct.CursorValue.html'>CursorValue</a><a class='struct current' href='struct.Database.html'>Database</a><a class='struct ' href='struct.DbFlags.html'>DbFlags</a><a class='struct ' href='struct.EnvBuilder.html'>EnvBuilder</a><a class='struct ' href='struct.EnvCreateFlags.html'>EnvCreateFlags</a><a class='struct ' href='struct.EnvFlags.html'>EnvFlags</a><a class='struct ' href='struct.Environment.html'>Environment</a><a class='struct ' href='struct.MdbValue.html'>MdbValue</a><a class='struct ' href='struct.NativeTransaction.html'>NativeTransaction</a><a class='struct ' href='struct.ReadonlyTransaction.html'>ReadonlyTransaction</a><a class='struct ' href='struct.Transaction.html'>Transaction</a></div><div class='block trait'><h2>Traits</h2><a class='trait ' href='trait.CursorIteratorInner.html'>CursorIteratorInner</a><a class='trait ' href='trait.ReadTransaction.html'>ReadTransaction</a><a class='trait ' href='trait.WriteTransaction.html'>WriteTransaction</a></div>
+    </section>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press 'S' to search, '?' for more options..."
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../index.html'>lmdb</a>::<wbr><a href='index.html'>core</a>::<wbr><a class='struct' href=''>Database</a><wbr><a class='stability Unstable' title=''>Unstable</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="collapse-all" href="#">[-]
+            </a>&nbsp;<a id="expand-all" href="#">[+]</a>
+        </span><a id='src-5870' href='../../src/lmdb/home/travis/build/vhbit/lmdb-rs/src/core.rs.html#338-341'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct Database {
+    // some fields omitted
+}</pre><div class='docblock'><p>Database</p>
+</div><h2 id='methods'>Methods</h2><h3 class='impl'><a class='stability Unstable' title='Unstable'></a><code>impl <a class='struct' href='../../lmdb/core/struct.Database.html' title='lmdb::core::Database'>Database</a></code></h3><div class='impl-methods'><h4 id='method.get' class='method'><a class='stability Unstable' title='Unstable'></a><code>fn <a href='#method.get' class='fnname'>get</a>&lt;'a, T: <a class='trait' href='../../lmdb/traits/trait.FromMdbValue.html' title='lmdb::traits::FromMdbValue'>FromMdbValue</a>&lt;'a&gt;&gt;(&amp;self, txn: &amp;'a <a class='trait' href='../../lmdb/core/trait.ReadTransaction.html' title='lmdb::core::ReadTransaction'>ReadTransaction</a>&lt;'a&gt;, key: &amp;'a <a class='trait' href='../../lmdb/traits/trait.ToMdbValue.html' title='lmdb::traits::ToMdbValue'>ToMdbValue</a>&lt;'a&gt;) -&gt; <a class='type' href='../../lmdb/core/type.MdbResult.html' title='lmdb::core::MdbResult'>MdbResult</a>&lt;T&gt;</code></h4>
+<div class='docblock'><p>Retrieves a value by key. In case of DbAllowDups it will be the first value</p>
+</div><h4 id='method.set' class='method'><a class='stability Unstable' title='Unstable'></a><code>fn <a href='#method.set' class='fnname'>set</a>&lt;'a&gt;(&amp;'a self, txn: &amp;'a <a class='trait' href='../../lmdb/core/trait.WriteTransaction.html' title='lmdb::core::WriteTransaction'>WriteTransaction</a>&lt;'a&gt;, key: &amp;'a <a class='trait' href='../../lmdb/traits/trait.ToMdbValue.html' title='lmdb::traits::ToMdbValue'>ToMdbValue</a>&lt;'a&gt;, value: &amp;'a <a class='trait' href='../../lmdb/traits/trait.ToMdbValue.html' title='lmdb::traits::ToMdbValue'>ToMdbValue</a>&lt;'a&gt;) -&gt; <a class='type' href='../../lmdb/core/type.MdbResult.html' title='lmdb::core::MdbResult'>MdbResult</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.unit.html'>()</a>&gt;</code></h4>
+<div class='docblock'><p>Sets value for key. In case of DbAllowDups it will add a new item</p>
+</div><h4 id='method.del' class='method'><a class='stability Unstable' title='Unstable'></a><code>fn <a href='#method.del' class='fnname'>del</a>&lt;'a&gt;(&amp;self, txn: &amp;'a <a class='trait' href='../../lmdb/core/trait.WriteTransaction.html' title='lmdb::core::WriteTransaction'>WriteTransaction</a>&lt;'a&gt;, key: &amp;'a <a class='trait' href='../../lmdb/traits/trait.ToMdbValue.html' title='lmdb::traits::ToMdbValue'>ToMdbValue</a>&lt;'a&gt;) -&gt; <a class='type' href='../../lmdb/core/type.MdbResult.html' title='lmdb::core::MdbResult'>MdbResult</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.unit.html'>()</a>&gt;</code></h4>
+<div class='docblock'><p>Deletes value for key.</p>
+</div><h4 id='method.del_item' class='method'><a class='stability Unstable' title='Unstable'></a><code>fn <a href='#method.del_item' class='fnname'>del_item</a>&lt;'a&gt;(&amp;self, txn: &amp;'a <a class='trait' href='../../lmdb/core/trait.WriteTransaction.html' title='lmdb::core::WriteTransaction'>WriteTransaction</a>&lt;'a&gt;, key: &amp;'a <a class='trait' href='../../lmdb/traits/trait.ToMdbValue.html' title='lmdb::traits::ToMdbValue'>ToMdbValue</a>&lt;'a&gt;, data: &amp;'a <a class='trait' href='../../lmdb/traits/trait.ToMdbValue.html' title='lmdb::traits::ToMdbValue'>ToMdbValue</a>&lt;'a&gt;) -&gt; <a class='type' href='../../lmdb/core/type.MdbResult.html' title='lmdb::core::MdbResult'>MdbResult</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.unit.html'>()</a>&gt;</code></h4>
+<div class='docblock'><p>Should be used only with DbAllowDups. Deletes corresponding (key, value)</p>
+</div><h4 id='method.new_cursor' class='method'><a class='stability Unstable' title='Unstable'></a><code>fn <a href='#method.new_cursor' class='fnname'>new_cursor</a>&lt;'a&gt;(&amp;'a self, txn: &amp;'a <a class='trait' href='../../lmdb/core/trait.ReadTransaction.html' title='lmdb::core::ReadTransaction'>ReadTransaction</a>&lt;'a&gt;) -&gt; <a class='type' href='../../lmdb/core/type.MdbResult.html' title='lmdb::core::MdbResult'>MdbResult</a>&lt;<a class='struct' href='../../lmdb/core/struct.Cursor.html' title='lmdb::core::Cursor'>Cursor</a>&lt;'a&gt;&gt;</code></h4>
+<div class='docblock'><p>Returns a new cursor</p>
+</div><h4 id='method.del_db' class='method'><a class='stability Unstable' title='Unstable'></a><code>fn <a href='#method.del_db' class='fnname'>del_db</a>&lt;'a&gt;(self, txn: &amp;'a <a class='trait' href='../../lmdb/core/trait.WriteTransaction.html' title='lmdb::core::WriteTransaction'>WriteTransaction</a>&lt;'a&gt;) -&gt; <a class='type' href='../../lmdb/core/type.MdbResult.html' title='lmdb::core::MdbResult'>MdbResult</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.unit.html'>()</a>&gt;</code></h4>
+<div class='docblock'><p>Deletes current db, also moves it out</p>
+</div><h4 id='method.clear' class='method'><a class='stability Unstable' title='Unstable'></a><code>fn <a href='#method.clear' class='fnname'>clear</a>&lt;'a&gt;(&amp;self, txn: &amp;'a <a class='trait' href='../../lmdb/core/trait.WriteTransaction.html' title='lmdb::core::WriteTransaction'>WriteTransaction</a>&lt;'a&gt;) -&gt; <a class='type' href='../../lmdb/core/type.MdbResult.html' title='lmdb::core::MdbResult'>MdbResult</a>&lt;<a href='http://doc.rust-lang.org/nightly/std/primitive.unit.html'>()</a>&gt;</code></h4>
+<div class='docblock'><p>Removes all key/values from db</p>
+</div><h4 id='method.iter' class='method'><a class='stability Unstable' title='Unstable'></a><code>fn <a href='#method.iter' class='fnname'>iter</a>&lt;'a&gt;(&amp;'a self, txn: &amp;'a <a class='trait' href='../../lmdb/core/trait.ReadTransaction.html' title='lmdb::core::ReadTransaction'>ReadTransaction</a>&lt;'a&gt;) -&gt; <a class='type' href='../../lmdb/core/type.MdbResult.html' title='lmdb::core::MdbResult'>MdbResult</a>&lt;<a class='struct' href='../../lmdb/core/struct.CursorIterator.html' title='lmdb::core::CursorIterator'>CursorIterator</a>&lt;'a, <a class='struct' href='../../lmdb/core/struct.CursorIter.html' title='lmdb::core::CursorIter'>CursorIter</a>&gt;&gt;</code></h4>
+<div class='docblock'><p>Returns an iterator for all values in database</p>
+</div><h4 id='method.keyrange' class='method'><a class='stability Unstable' title='Unstable'></a><code>fn <a href='#method.keyrange' class='fnname'>keyrange</a>&lt;'a, T: 'a&gt;(&amp;'a self, txn: &amp;'a <a class='trait' href='../../lmdb/core/trait.ReadTransaction.html' title='lmdb::core::ReadTransaction'>ReadTransaction</a>&lt;'a&gt;, start_key: &amp;'a T, end_key: &amp;'a T) -&gt; <a class='type' href='../../lmdb/core/type.MdbResult.html' title='lmdb::core::MdbResult'>MdbResult</a>&lt;<a class='struct' href='../../lmdb/core/struct.CursorIterator.html' title='lmdb::core::CursorIterator'>CursorIterator</a>&lt;'a, <a class='struct' href='../../lmdb/core/struct.CursorKeyRangeIter.html' title='lmdb::core::CursorKeyRangeIter'>CursorKeyRangeIter</a>&gt;&gt; where T: <a class='trait' href='../../lmdb/traits/trait.ToMdbValue.html' title='lmdb::traits::ToMdbValue'>ToMdbValue</a>&lt;'a&gt; + <a class='trait' href='http://doc.rust-lang.org/nightly/core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a></code></h4>
+<div class='docblock'><p>Returns an iterator for values between start_key and end_key.
+Currently it works only for unique keys (i.e. it will skip
+multiple items when DB created with ffi::MDB_DUPSORT).
+Iterator is valid while cursor is valid</p>
+</div><h4 id='method.item_iter' class='method'><a class='stability Unstable' title='Unstable'></a><code>fn <a href='#method.item_iter' class='fnname'>item_iter</a>&lt;'a&gt;(&amp;'a self, txn: &amp;'a <a class='trait' href='../../lmdb/core/trait.ReadTransaction.html' title='lmdb::core::ReadTransaction'>ReadTransaction</a>&lt;'a&gt;, key: &amp;'a <a class='trait' href='../../lmdb/traits/trait.ToMdbValue.html' title='lmdb::traits::ToMdbValue'>ToMdbValue</a>&lt;'a&gt;) -&gt; <a class='type' href='../../lmdb/core/type.MdbResult.html' title='lmdb::core::MdbResult'>MdbResult</a>&lt;<a class='struct' href='../../lmdb/core/struct.CursorIterator.html' title='lmdb::core::CursorIterator'>CursorIterator</a>&lt;'a, <a class='struct' href='../../lmdb/core/struct.CursorItemIter.html' title='lmdb::core::CursorItemIter'>CursorItemIter</a>&lt;'a&gt;&gt;&gt;</code></h4>
+<div class='docblock'><p>Returns an iterator for all items (i.e. values with same key)</p>
+</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.Drop.html' title='core::ops::Drop'>Drop</a> for <a class='struct' href='../../lmdb/core/struct.Database.html' title='lmdb::core::Database'>Database</a></code></h3><div class='impl-methods'><h4 id='method.drop' class='method'><a class='stability Experimental' title='Experimental'></a><code>fn <a href='#method.drop' class='fnname'>drop</a>(&amp;mut self)</code></h4>
+</div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <div id="help" class="hidden">
+        <div class="shortcuts">
+            <h1>Keyboard shortcuts</h1>
+            <dl>
+                <dt>?</dt>
+                <dd>Show this help dialog</dd>
+                <dt>S</dt>
+                <dd>Focus the search field</dd>
+                <dt>&larrb;</dt>
+                <dd>Move up in search results</dd>
+                <dt>&rarrb;</dt>
+                <dd>Move down in search results</dd>
+                <dt>&#9166;</dt>
+                <dd>Go to active search result</dd>
+            </dl>
+        </div>
+        <div class="infos">
+            <h1>Search tricks</h1>
+            <p>
+                Prefix searches with a type followed by a colon (e.g.
+                <code>fn:</code>) to restrict the search to a given type.
+            </p>
+            <p>
+                Accepted types are: <code>fn</code>, <code>mod</code>,
+                <code>struct</code>, <code>enum</code>,
+                <code>trait</code>, <code>typedef</code> (or
+                <code>tdef</code>).
+            </p>
+        </div>
+    </div>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "lmdb";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    
+    <script async src="../../search-index.js"></script>
+</body>
+</html>
